@@ -22,6 +22,8 @@ status = "actively-developed"
 default = ["http2", "native-tls", "static-curl", "text-decoding"]
 cookies = ["httpdate"]
 http2 = ["curl/http2"]
+impersonate-chrome = ["curl/impersonate-chrome", "curl-sys/impersonate-chrome"]
+impersonate-ff = ["curl/impersonate-ff", "curl-sys/impersonate-ff"]
 json = ["serde", "serde_json"]
 native-tls = ["curl/ssl", "curl-sys/ssl"]
 nightly = []
@@ -50,12 +52,15 @@ waker-fn = "1" # async primitive
 
 # underlying HTTP engine that powers Isahc
 [dependencies.curl]
-version = "0.4.43"
+git = "https://github.com/selfisekai/curl-rust.git"
+branch = "impersonate-features"
 default-features = false
 
 # access to certain curl APIs not exposed in safe wrapper
 [dependencies.curl-sys]
-version = "0.4.55"
+git = "https://github.com/selfisekai/curl-rust.git"
+branch = "impersonate-features"
+package = "curl-sys"
 default-features = false
 
 # used in TLS cert parsing
